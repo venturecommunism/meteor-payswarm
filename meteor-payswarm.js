@@ -28,6 +28,21 @@ if (Meteor.isClient) {
       Session.set("selected_player", this._id);
     }
   });
+
+
+///////////////// payswarm template and events //////////////////
+
+
+  Template.payswarm.events({
+    'click input.inc': function () {
+//        Meteor.call('create_listing');
+        console.log('it works');
+    }
+  });
+
+
+///////////////// end payswarm template and events /////////////
+
 }
 
 // On server startup, create some players if the database is empty.
@@ -43,28 +58,14 @@ if (Meteor.isServer) {
       for (var i = 0; i < names.length; i++)
         Players.insert({name: names[i], score: Math.floor(Math.random()*10)*5});
     }
+
   });
 }
 
 
-///////////////////// payswarm client side stuff //////////////////
-
-if (Meteor.isClient) {
-  Meteor.startup(function () {
-var taskadd_cmd = "";
-console.log(taskadd_cmd);
-Meteor.call('create_listing', taskadd_cmd);
-})
-}
-
-//////////////////// end of payswarm client side stuff ////////////
-
-
-
-
 //////////////////// payswarm server side stuff /////////////////////
 
-if(Meteor.is_server) {
+if(Meteor.isServer) {
  var exec;
 
  // Initialize the exec function
@@ -74,16 +75,16 @@ console.log('meteor_bootstrap');
  });
 
  Meteor.methods({
-  'create_listing': function(line) {
+  'create_listing': function() {
    // Run the requested command in shell
-var line = line + "node /root/venture/payswarm.js/examples/publish-asset-for-sale.js --config /root/venture/payswarm.js/examples/payswarm.cfg";
+var line = "node /root/venture/payswarm.js/examples/publish-asset-for-sale.js --config /root/venture/payswarm.js/examples/payswarm.cfg";
 console.log(line);
    exec(line, function(error, stdout, stderr) {
 console.log('exec working');
     // Collection commands must be executed within a Fiber
     Fiber(function() {
 
-var payswarmcom = stdout ? stdout : stderr;
+// var payswarmcom = stdout ? stdout : stderr;
 
 console.log(payswarmcom);
 //console.log(payswarmcom[0].description);
