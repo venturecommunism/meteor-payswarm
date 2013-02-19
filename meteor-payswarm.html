@@ -9,6 +9,12 @@
 </body>
 
 <template name="leaderboard">
+
+  <div class="payswarm">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="pay" value="Make this payment" />
+  </div>
+
   <div class="leaderboard">
     {{#each players}}
       {{> player}}
@@ -25,6 +31,7 @@
   {{#unless selected_name}}
   <div class="none">Click a player to select</div>
   {{/unless}}
+
 </template>
 
 <template name="player">
