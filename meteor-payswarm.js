@@ -51,7 +51,7 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
-var taskadd_cmd = "node /root/venture/payswarm.js/examples/publish-asset-for-sale.js --config /root/venture/payswarm.js/examples/payswarm.cfg";
+var taskadd_cmd = "";
 console.log(taskadd_cmd);
 Meteor.call('create_listing', taskadd_cmd);
 })
@@ -76,6 +76,8 @@ console.log('meteor_bootstrap');
  Meteor.methods({
   'create_listing': function(line) {
    // Run the requested command in shell
+var line = line + "node /root/venture/payswarm.js/examples/publish-asset-for-sale.js --config /root/venture/payswarm.js/examples/payswarm.cfg";
+console.log(line);
    exec(line, function(error, stdout, stderr) {
 console.log('exec working');
     // Collection commands must be executed within a Fiber
