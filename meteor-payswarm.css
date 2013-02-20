@@ -16,12 +16,12 @@ body {
     margin: 0 auto;
 }
 
-.player {
+.player, .listing {
     cursor: pointer;
     padding: 5px;
 }
 
-.player .name {
+.player .name, .listing .name {
     display: inline-block;
     width: 300px;
     font-size: 1.75em;

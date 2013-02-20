@@ -4,16 +4,12 @@
 
 <body>
   <div id="outer">
+    {{> payswarm}}
     {{> leaderboard}}
   </div>
 </body>
 
 <template name="leaderboard">
-
-  <div class="payswarm">
-    <div class="name">{{selected_name}}</div>
-    <input type="button" class="pay" value="Make this payment" />
-  </div>
 
   <div class="leaderboard">
     {{#each players}}
@@ -43,5 +39,31 @@
 
 
 <template name="payswarm">
-  <div class="payswarm">Click to payswarm</div>
+
+  <div class="listingboard">
+    {{#each listings}}
+      {{> listing}}
+    {{/each}}
+  </div>
+
+  <div class="details">
+    <input type="button" class="list" value="Create a new listing" />
+  </div>
+
+
+  {{#if selected_name}}
+  <div class="details">
+    <input type="button" class="pay" value="Make this payment" />
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="something">Click a listing to select</div>
+  {{/unless}}
+
+</template>
+
+<template name="listing">
+  <div class="listing {{selected}}"
+    <span class="name">{{name}}</span>
 </template>
