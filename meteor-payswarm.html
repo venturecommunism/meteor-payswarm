@@ -5,40 +5,15 @@
 <body>
   <div id="outer">
     {{> payswarm}}
-    {{> leaderboard}}
   </div>
 </body>
 
-<template name="leaderboard">
-
-  <div class="leaderboard">
-    {{#each players}}
-      {{> player}}
-    {{/each}}
-  </div>
-
-  {{#if selected_name}}
-  <div class="details">
-    <div class="name">{{selected_name}}</div>
-    <input type="button" class="inc" value="Give 5 points" />
-  </div>
-  {{/if}}
-
-  {{#unless selected_name}}
-  <div class="none">Click a player to select</div>
-  {{/unless}}
-
-</template>
-
-<template name="player">
-  <div class="player {{selected}}">
-    <span class="name">{{name}}</span>
-    <span class="score">{{score}}</span>
-  </div>
-</template>
-
-
 <template name="payswarm">
+
+  <div class="details">
+    <input type="button" class="list" value="Create a new listing" />
+  </div>
+
 
   <div class="listingboard">
     {{#each listings}}
@@ -46,24 +21,23 @@
     {{/each}}
   </div>
 
+  {{#if selected_listing}}
   <div class="details">
-    <input type="button" class="list" value="Create a new listing" />
-  </div>
-
-
-  {{#if selected_name}}
-  <div class="details">
-    <input type="button" class="pay" value="Make this payment" />
+    <div class="name">{{selected_listing}}</div>
+<!--    <input type="button" class="pay" value="Make this payment" /> -->
   </div>
   {{/if}}
 
-  {{#unless selected_name}}
-  <div class="something">Click a listing to select</div>
+  {{#unless selected_listing}}
+  <div class="none">Click a listing to select</div>
   {{/unless}}
 
 </template>
 
 <template name="listing">
+
   <div class="listing {{selected}}"
     <span class="name">{{name}}</span>
+
 </template>
+

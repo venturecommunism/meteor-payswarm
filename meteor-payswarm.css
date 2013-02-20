@@ -16,18 +16,18 @@ body {
     margin: 0 auto;
 }
 
-.player, .listing {
+.listing {
     cursor: pointer;
     padding: 5px;
 }
 
-.player .name, .listing .name {
+.listing .name {
     display: inline-block;
     width: 300px;
     font-size: 1.75em;
 }
 
-.player .score {
+.listing .score {
     display: inline-block;
     width: 100px;
     text-align: right;
@@ -36,11 +36,11 @@ body {
     color: #777;
 }
 
-.player.selected {
+.listing.selected {
     background-color: yellow;
 }
 
-.player.selected .score {
+.listing.selected .score {
     color: black;
 }
 
@@ -58,6 +58,6 @@ body {
     color: #777;
 }
 
-.inc {
+.pay {
   cursor: pointer;
 }
