@@ -43,27 +43,15 @@ if (Meteor.isClient) {
   });
 
 
+  Template.listing.thing = function () {
+    return 'thing';
+    };
+
 
 ///////////////// end payswarm template and events /////////////
 
 }
 
-// On server startup, create some players if the database is empty.
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    if (Players.find().count() === 0) {
-      var names = ["$0",
-                   "$0-10",
-                   "$10-20",
-                   "$20-100",
-                   "$100-200",
-                   "$200-500"];
-      for (var i = 0; i < names.length; i++)
-        Players.insert({name: names[i], score: Math.floor(Math.random()*10)*5});
-    }
-
-  });
-}
 
 
 //////////////////// payswarm server side stuff /////////////////////
@@ -87,11 +75,20 @@ if(Meteor.isServer) {
  var payswarmcom = stdout ? stdout : stderr;
 
 //console.log(payswarmcom);
-//console.log(payswarmcom[0].description);
 //console.log(payswarmcom[0].tags);
 //console.log(payswarmcom[0].uuid);
 
+var httpcall = Meteor.http.call("GET", stdout);
+//var contentholder = eval('(' + httpcall + ')');
+var contentholder = JSON.parse(httpcall.content);
+//console.log(contentholder);
+//console.log("");
+var title = contentholder["@graph"][0]["title"];
+console.log(title);
+var context = contentholder["@context"];
+
 Listings.insert({name: stdout,
+                 title: title,
   });
 
 if(Meteor.isClient) {

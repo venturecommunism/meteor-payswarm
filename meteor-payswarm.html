@@ -4,6 +4,7 @@
 
 <body>
   <div id="outer">
+    {{loginButtons}}
     {{> payswarm}}
   </div>
 </body>
@@ -24,6 +25,7 @@
   {{#if selected_listing}}
   <div class="details">
     <div class="name">{{selected_listing}}</div>
+    <div class="name">{{thing}}</div>
 <!--    <input type="button" class="pay" value="Make this payment" /> -->
   </div>
   {{/if}}
@@ -37,7 +39,6 @@
 <template name="listing">
 
   <div class="listing {{selected}}"
-    <span class="name">{{name}}</span>
-
+    <span class="name"><a href="{{name}}">{{title}}</a></span>
 </template>
 
